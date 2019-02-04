@@ -13,19 +13,19 @@ class Clock extends Component {
   }
 
   componentWillMount(){
-    this.getTimeUntil(this.props.deadline);
+    this.getTimeUntil(this.props.date);
   }
 
   componentDidMount(){
-    setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
+    setInterval(() => this.getTimeUntil(this.props.date), 1000);
   }
 
   leading0(num) {
     return num < 10 ? '0' + num : num;
   }
 
-  getTimeUntil(deadline) {
-    const time = Date.parse(deadline) - Date.parse(new Date());
+  getTimeUntil(date) {
+    const time = Date.parse(date) - Date.parse(new Date());
     const seconds = Math.floor((time/1000)%60);
     const minutes = Math.floor((time/1000/60)%60);
     const hours = Math.floor(time/(1000*60*60)%24);

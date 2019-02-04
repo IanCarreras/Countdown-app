@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Calendar from 'rc-calendar';
 import './App.css';
 import Clock from './Clock';
 import { Form, FormControl, Button } from 'react-bootstrap';
@@ -7,29 +8,32 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      deadline: 'Dec 25, 2017',
-      newDeadline: ''
+      date: 'Jan 1, 2020',
+      newDate: ''
     }
   }
 
-  changeDeadline() {
-    this.setState({ deadline: this.state.newDeadline})
+  changeDate() {
+    this.setState({ date: this.state.newDate})
   }
 
   render() {
     return (
       <div className="App">
-        <div className="title">Countdown to {this.state.deadline}</div>
+        <div className="title">{this.state.date} until {this.state.date}</div>
         <Clock
-          deadline={this.state.deadline}
+          date={this.state.date}
         />
         <Form inline>
           <FormControl
-            className="deadline-input"
-            onChange={ event => this.setState({newDeadline: event.target.value}) }
+            className="date-input"
+            onChange={ event => this.setState({newDate: event.target.value}) }
           />
-          <Button onClick={() => this.changeDeadline()}>submit</Button>
+          <Button onClick={() => this.changeDate()}>submit</Button>
         </Form>
+        <Calendar
+          className="calendar"
+        />
       </div>
     );
   }
